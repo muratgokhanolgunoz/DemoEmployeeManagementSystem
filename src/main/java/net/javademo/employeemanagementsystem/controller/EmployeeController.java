@@ -2,7 +2,6 @@ package net.javademo.employeemanagementsystem.controller;
 
 import lombok.AllArgsConstructor;
 import net.javademo.employeemanagementsystem.dto.EmployeeDto;
-import net.javademo.employeemanagementsystem.mapper.EmployeeMapper;
 import net.javademo.employeemanagementsystem.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +38,11 @@ public class EmployeeController {
                                                       @RequestBody EmployeeDto updatedEmployee) {
         EmployeeDto employeeDto = employeeService.updateEmployee(employeeId, updatedEmployee);
         return ResponseEntity.ok(employeeDto);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId) {
+        employeeService.deleteEmployee(employeeId);
+        return ResponseEntity.ok("Employee deleted successfully");
     }
 }
